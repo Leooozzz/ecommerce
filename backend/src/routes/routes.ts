@@ -19,6 +19,7 @@ import {
   getOrdersByClientController,
   getOrdersController,
 } from "../controller/order.controller";
+import { adminGetOrder, adminUpdateOrder } from "../controller/adminOrder.controller";
 
 const router = Router();
 
@@ -38,7 +39,7 @@ router.post("/admin/products", adminPostProducts);
 router.put("/admin/products/:id", adminProductsupdate);
 router.delete("/admin/products/:id", adminProductDelete);
 
-router.get("/admin/orders");
-router.put("admin/order/:id/status");
+router.get("/admin/orders",adminGetOrder);
+router.put("admin/order/:id/status",adminUpdateOrder);
 
 export default router;
