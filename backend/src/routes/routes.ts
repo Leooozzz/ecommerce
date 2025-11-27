@@ -1,30 +1,44 @@
 import { Router } from "express";
-import { clientLoginController, clientsRegisterController } from "../controller/clients.controller";
-import { getAllProducts, getProductForCategory, getSingleProduct } from "../controller/product.controller";
-import { adminPostProducts } from "../controller/adminProducts.controller";
+import {
+  clientLoginController,
+  clientsRegisterController,
+} from "../controller/clients.controller";
+import {
+  getAllProducts,
+  getProductForCategory,
+  getSingleProduct,
+} from "../controller/product.controller";
+import {
+  adminPostProducts,
+  adminProductDelete,
+  adminProductsupdate,
+} from "../controller/adminProducts.controller";
+import {
+  createOrderController,
+  getOrderByIdController,
+  getOrdersByClientController,
+  getOrdersController,
+} from "../controller/order.controller";
 
+const router = Router();
 
+router.post("/clients/register", clientsRegisterController);
+router.post("/clients/login", clientLoginController);
 
-const router=Router()
+router.get("/products/:id", getSingleProduct);
+router.get("/products", getAllProducts);
+router.get("/products/category/:category", getProductForCategory);
 
-router.post('/clients/register',clientsRegisterController)
-router.post('/clients/login',clientLoginController)
+router.post("/orders", createOrderController);
+router.get("/orders", getOrdersController);
+router.get("/order/:id", getOrderByIdController);
+router.get("/order/clients/:id", getOrdersByClientController);
 
-router.get('/products/:id',getSingleProduct)
-router.get('/products',getAllProducts)
-router.get('/products/category/:category',getProductForCategory)
+router.post("/admin/products", adminPostProducts);
+router.put("/admin/products/:id", adminProductsupdate);
+router.delete("/admin/products/:id", adminProductDelete);
 
-router.post('/orders')
-router.get('/orders')
-router.get('/order/:id')
-router.get('/order/clients/:id')
+router.get("/admin/orders");
+router.put("admin/order/:id/status");
 
-router.post('/admin/products',adminPostProducts)
-router.put('/admin/products/:id')
-router.delete('/admin/products/:id')
-
-router.get('/admin/orders')
-router.put('admin/order/:id/status')
-
-
-export default router
+export default router;
