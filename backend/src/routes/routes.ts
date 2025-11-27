@@ -6,7 +6,7 @@ import { clientsRegisterController } from "../controller/clients.controller";
 const router=Router()
 
 router.post('/clients/register',clientsRegisterController)
-router.post('/clients/login')
+router.post('/clients/login',clientLoginController)
 
 router.get('/products/:id')
 router.get('/products')
